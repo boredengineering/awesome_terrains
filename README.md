@@ -1,3 +1,14 @@
+# Awesome Terrains Extension
+!!! Please, feel free to collaborate on the project !!!<br/>
+**Authors** <br/>
+> Renan Monteiro Barbosa
+
+Requirements:<br/>
+> Isaac-Sim
+
+This extension is a study template to create Terrains programatically in Isaac-Sim.<br/>
+The idea is to explore making terrains to train Robots in OIGE.<br/>
+
 # Extension Project Template
 
 This project was automatically generated.
