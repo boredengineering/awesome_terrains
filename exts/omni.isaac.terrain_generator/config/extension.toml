@@ -3,23 +3,23 @@
 version = "1.0.0"
 
 # Lists people or organizations that are considered the "authors" of the package.
-authors = ["NVIDIA"]
+authors = ["NVIDIA","Bored Engineering","Renan Monteiro Barbosa"]
 
 # The title and description fields are primarily for displaying extension info in UI
-title = "omni isaac terrain_generator"
-description="A simple python extension example to use as a starting point for your extensions."
+title = "Awesome Terrain Generator"
+description="An extension to generate terrains for Isaac-Sim with focus on OIGE. Only works on Isaac-Sim."
 
 # Path (relative to the root) or content of readme markdown file for UI.
 readme  = "docs/README.md"
 
 # URL of the extension source repository.
-repository = ""
+repository = "https://github.com/boredengineering/awesome_terrains"
 
 # One of categories for UI.
 category = "Example"
 
 # Keywords for the extension
-keywords = ["kit", "example"]
+keywords = ["isaac","isaac-sim","sim","oige","gym","kit", "example","terains"]
 
 # Location of change log file in target (final) folder of extension, relative to the root.
 # More info on writing changelog: https://keepachangelog.com/en/1.0.0/
