@@ -70,15 +70,22 @@ class OmniIsaacTerrain_generatorExtension(omni.ext.IExt):
         def new_sub_terrain(): 
             return SubTerrain(width=num_rows, length=num_cols, vertical_scale=vertical_scale, horizontal_scale=horizontal_scale)
 
+        # weird
         heightfield[0:num_rows, :] = random_uniform_terrain(new_sub_terrain(), min_height=-0.2, max_height=0.2, step=0.2, downsampled_scale=0.5).height_field_raw
+        # Make a plain slope, need to understand how to control. When deleted makes a flat terrain
         heightfield[num_rows:2*num_rows, :] = sloped_terrain(new_sub_terrain(), slope=-0.5).height_field_raw
+        # Pyramid slope, probably the base for the stairs code
         heightfield[2*num_rows:3*num_rows, :] = pyramid_sloped_terrain(new_sub_terrain(), slope=-0.5).height_field_raw
+        # nice square obstacles randomly generated
         heightfield[3*num_rows:4*num_rows, :] = discrete_obstacles_terrain(new_sub_terrain(), max_height=0.5, min_size=1., max_size=5., num_rects=20).height_field_raw
+        # Nice curvy terrain
         heightfield[4*num_rows:5*num_rows, :] = wave_terrain(new_sub_terrain(), num_waves=2., amplitude=1.).height_field_raw
+        # Adjust stair step size, how far it goes down or up.
         heightfield[5*num_rows:6*num_rows, :] = stairs_terrain(new_sub_terrain(), step_width=0.75, step_height=-0.5).height_field_raw
+        # Need to figure out how to cahnge step heights and make a Pyramid Stair go up
         heightfield[6*num_rows:7*num_rows, :] = pyramid_stairs_terrain(new_sub_terrain(), step_width=0.75, step_height=-0.5).height_field_raw
-        heightfield[7*num_rows:8*num_rows, :] = stepping_stones_terrain(new_sub_terrain(), stone_size=1.,
-                                                                        stone_distance=1., max_height=0.5, platform_size=0.).height_field_raw
+        # Stepping Stones need fixing depth
+        heightfield[7*num_rows:8*num_rows, :] = stepping_stones_terrain(new_sub_terrain(), stone_size=1., stone_distance=1., max_height=0.5, platform_size=0.).height_field_raw
         
         vertices, triangles = convert_heightfield_to_trimesh(heightfield, horizontal_scale=horizontal_scale, vertical_scale=vertical_scale, slope_threshold=1.5)
 
