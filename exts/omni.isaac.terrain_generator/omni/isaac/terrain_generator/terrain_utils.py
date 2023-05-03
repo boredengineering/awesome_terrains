@@ -377,11 +377,11 @@ class SubTerrain:
         self.height_field_raw = np.zeros((self.width, self.length), dtype=np.int16)
 
 
-stage = omni.usd.get_context().get_stage()
-width=256
-length=256
-height_field_raw = np.zeros((width, length), dtype=np.int16)
-vertices, triangles = convert_heightfield_to_trimesh(height_field_raw, horizontal_scale=1.0, vertical_scale=1.0, slope_threshold=None)
-terrain = add_terrain_to_stage(stage, vertices, triangles)
+# stage = omni.usd.get_context().get_stage()
+# width=256
+# length=256
+# height_field_raw = np.zeros((width, length), dtype=np.int16)
+# vertices, triangles = convert_heightfield_to_trimesh(height_field_raw, horizontal_scale=1.0, vertical_scale=1.0, slope_threshold=None)
+# terrain = add_terrain_to_stage(stage, vertices, triangles)
 # random_uniform_terrain(terrain, min_height, max_height, step=1)
 

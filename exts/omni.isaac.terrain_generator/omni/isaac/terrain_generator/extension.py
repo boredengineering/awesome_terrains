@@ -4,6 +4,7 @@ import omni.ui as ui
 from .terrain_utils import *
 from omni.isaac.core.utils.stage import add_reference_to_stage, get_current_stage
 from omni.isaac.core.utils.prims import define_prim, get_prim_at_path
+import omni.usd
 
 # Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
 def some_public_function(x: int):
@@ -32,23 +33,28 @@ class OmniIsaacTerrain_generatorExtension(omni.ext.IExt):
                 def on_click():
                     self.get_terrain()
                     # self._count += 1
-                    # label.text = f"count: {self._count}"
+                    label.text = "Generate Terrain"
 
                 def on_reset():
-                    self._count = 0
-                    label.text = "empty"
+                    self.clear_terrain()
+                    # self._count = 0
+                    label.text = "Clear Stage"
 
                 on_reset()
 
                 with ui.HStack():
-                    ui.Button("Add", clicked_fn=on_click)
-                    ui.Button("Reset", clicked_fn=on_reset)
+                    ui.Button("Add Terrain", clicked_fn=on_click)
+                    ui.Button("Clear Stage", clicked_fn=on_reset)
 
     def on_shutdown(self):
         print("[omni.isaac.terrain_generator] omni isaac terrain_generator shutdown")
 
+    # This deletes the terrain
+    def clear_terrain(self):
+        current_stage = get_current_stage()
+        current_stage.RemovePrim("/World/terrain")
+    
     # The stuff that makes terrain
-
     def get_terrain(self):
         stage = get_current_stage()
         # create all available terrain types
