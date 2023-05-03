@@ -3,7 +3,7 @@ from numpy.random import choice
 from scipy import interpolate
 
 from math import sqrt
-
+from omni.isaac.core.utils.prims import define_prim, get_prim_at_path
 from omni.isaac.core.prims import XFormPrim
 from pxr import UsdPhysics, Sdf, Gf, PhysxSchema, Usd
 import omni.kit.commands
@@ -334,7 +334,7 @@ def convert_heightfield_to_trimesh(height_field_raw, horizontal_scale, vertical_
         triangles[start+1:stop:2, 2] = ind3
 
     return vertices, triangles
-    
+# Cannot load DefinePrim
 def add_terrain_to_stage(stage, vertices, triangles, position=None, orientation=None):
     num_faces = triangles.shape[0]
     terrain_mesh = stage.DefinePrim("/World/terrain", "Mesh")
@@ -361,6 +361,7 @@ def add_terrain_to_stage(stage, vertices, triangles, position=None, orientation=
     UsdPhysics.CollisionAPI.Apply(terrain.prim)
     collision_api = UsdPhysics.MeshCollisionAPI.Apply(terrain.prim)
     collision_api.CreateApproximationAttr().Set("meshSimplification")
+    collision_api.CreateApproximationAttr().Set("sdf")
     physx_collision_api = PhysxSchema.PhysxCollisionAPI.Apply(terrain.prim)
     physx_collision_api.GetContactOffsetAttr().Set(0.02)
     physx_collision_api.GetRestOffsetAttr().Set(0.00)

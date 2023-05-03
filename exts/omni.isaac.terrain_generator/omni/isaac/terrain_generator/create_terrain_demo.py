@@ -22,7 +22,7 @@ from omni.isaac.cloner import GridCloner
 
 from pxr import UsdPhysics, UsdLux, UsdShade, Sdf, Gf, UsdGeom, PhysxSchema
 
-from terrain_generator.terrain_utils import *
+from .terrain_utils import *
 
 
 class TerrainCreation(BaseTask):
