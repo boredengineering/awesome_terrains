@@ -360,7 +360,7 @@ def add_terrain_to_stage(stage, vertices, triangles, position=None, orientation=
 
     UsdPhysics.CollisionAPI.Apply(terrain.prim)
     collision_api = UsdPhysics.MeshCollisionAPI.Apply(terrain.prim)
-    collision_api.CreateApproximationAttr().Set("meshSimplification")
+    # collision_api.CreateApproximationAttr().Set("meshSimplification")
     collision_api.CreateApproximationAttr().Set("sdf")
     physx_collision_api = PhysxSchema.PhysxCollisionAPI.Apply(terrain.prim)
     physx_collision_api.GetContactOffsetAttr().Set(0.02)
